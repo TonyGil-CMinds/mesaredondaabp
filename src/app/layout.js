@@ -17,8 +17,8 @@ const beiruti = localFont({
 });
 
 export const metadata = {
-  title: "Registro BPA",
-  description: "Áreas de Bioprosperidad",
+  title: "Registro Mesas Redondas | Áreas de Bioprosperidad",
+  description: "Descubre nuestro trabajo sobre Áreas de Bioprosperidad ",
 };
 
 export default function RootLayout({ children }) {
