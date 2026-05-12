@@ -17,7 +17,6 @@ const beiruti = localFont({
 });
 
 export const metadata = {
-  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
   title: "Registro Mesas Redondas | Áreas de Bioprosperidad",
   description: "Descubre nuestro trabajo sobre Áreas de Bioprosperidad.",
   openGraph: {
