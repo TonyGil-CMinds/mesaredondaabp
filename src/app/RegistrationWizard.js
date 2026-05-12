@@ -5,6 +5,31 @@ import Image from "next/image";
 import gsap from "gsap";
 import { animate } from "animejs";
 
+const SOCIAL_LINKS = {
+  linkedin:  "https://www.linkedin.com/company/naturatechlac/",
+  instagram: "https://www.instagram.com/naturatechlac/",
+  facebook:  "https://www.facebook.com/naturatechlac",
+  whatsapp:  "https://api.whatsapp.com/send/?phone&text=https://www.naturatech.org/somosceiba",
+};
+
+function SocialIcons({ containerRef }) {
+  const icons = [
+    { key: "linkedin",  href: SOCIAL_LINKS.linkedin,  src: "/images/icon-ln.svg",  alt: "LinkedIn"   },
+    { key: "instagram", href: SOCIAL_LINKS.instagram, src: "/images/icon-ig.svg",  alt: "Instagram"  },
+    { key: "facebook",  href: SOCIAL_LINKS.facebook,  src: "/images/icon-fb.svg",  alt: "Facebook"   },
+    { key: "whatsapp",  href: SOCIAL_LINKS.whatsapp,  src: "/images/icon-wp.svg",  alt: "WhatsApp"   },
+  ];
+  return (
+    <div className="social-icons" ref={containerRef}>
+      {icons.map(({ key, href, src, alt }) => (
+        <a key={key} href={href} target="_blank" rel="noopener noreferrer">
+          <img src={src} alt={alt} className="social-icon" />
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function RegistrationWizard({ countsByDate }) {
   const allFull = countsByDate[19] >= 20 && countsByDate[20] >= 20 && countsByDate[21] >= 20;
   const firstAvailable = [19, 20, 21].find(d => countsByDate[d] < 20) ?? 19;
@@ -234,12 +259,7 @@ export default function RegistrationWizard({ countsByDate }) {
               Nuestras sesiones han alcanzado el cupo máximo. No te pierdas de las actualizaciones
               de todo el proceso a través de nuestros canales en redes sociales.
             </p>
-            <div className="social-icons" ref={closedSocialRef}>
-              <img src="/images/icon-ln.svg" alt="LinkedIn" className="social-icon" />
-              <img src="/images/icon-ig.svg" alt="Instagram" className="social-icon" />
-              <img src="/images/icon-fb.svg" alt="Facebook" className="social-icon" />
-              <img src="/images/icon-wp.svg" alt="WhatsApp" className="social-icon" />
-            </div>
+            <SocialIcons containerRef={closedSocialRef} />
             <div className="footer-text font-paragraph" ref={closedFooterRef}>
               © NaturaTech LAC. Todos los derechos reservados 2026
             </div>
@@ -326,12 +346,7 @@ export default function RegistrationWizard({ countsByDate }) {
                 <div className="success-date-card font-button" ref={successDateRef}>
                   {getActiveDateString()}
                 </div>
-                <div className="social-icons" ref={socialIconsRef}>
-                  <img src="/images/icon-ln.svg" alt="LinkedIn" className="social-icon" />
-                  <img src="/images/icon-ig.svg" alt="Instagram" className="social-icon" />
-                  <img src="/images/icon-fb.svg" alt="Facebook" className="social-icon" />
-                  <img src="/images/icon-wp.svg" alt="WhatsApp" className="social-icon" />
-                </div>
+                <SocialIcons containerRef={socialIconsRef} />
                 <div className="footer-text font-paragraph" ref={footerRef}>
                   © NaturaTech LAC. Todos los derechos reservados 2026
                 </div>
