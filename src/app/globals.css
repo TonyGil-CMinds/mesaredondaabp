@@ -1,26 +1,547 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #001919;
+  --color-green: #DEEE5A;
+  --color-white: #FDFFE3;
+  --color-blue: #286A7A;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-white);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.font-title { font-family: var(--font-unbounded), sans-serif; }
+.font-paragraph { font-family: var(--font-outfit), sans-serif; }
+.font-button { font-family: var(--font-beiruti), sans-serif; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-container {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
+.cards-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.date-card {
+  background: rgba(40, 106, 122, 0.1);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  width: 200px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.date-card.active {
+  background: rgba(222, 238, 90, 0.05);
+  border-color: var(--color-green);
+  box-shadow: 0 0 20px rgba(222, 238, 90, 0.2);
+}
+
+.card-month {
+  color: var(--color-blue);
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.date-card.active .card-month {
+  color: var(--color-green);
+}
+
+.card-day {
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--color-blue);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.date-card.active .card-day {
+  color: var(--color-green);
+}
+
+.card-time {
+  color: var(--color-blue);
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.date-card.active .card-time {
+  color: var(--color-green);
+}
+
+.btn-continue {
+  background-color: var(--color-green);
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 20;
+  transition: transform 0.2s ease;
+}
+
+.btn-continue:hover {
+  transform: scale(1.05);
+}
+
+.assets-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.asset-lower {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100vw;
+  max-width: none;
+  z-index: 2;
+}
+
+.asset-hand {
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  width: 30%;
+  max-width: 300px;
+  z-index: 3;
+}
+
+/* Form Styles */
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.form-input {
+  background: rgba(10, 25, 30, 0.6);
+  border: 1px solid rgba(40, 106, 122, 0.3);
+  border-radius: 20px;
+  padding: 1.2rem 1.5rem;
+  color: var(--color-blue);
+  font-family: var(--font-unbounded), sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.form-input::placeholder {
+  color: var(--color-blue);
+  opacity: 0.7;
+}
+
+.form-input:focus, .form-input.filled {
+  color: var(--color-white);
+  border-color: var(--color-green);
+}
+
+.actions-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  bottom: 2rem;
+  left: 0;
+  padding: 0 4rem;
+  z-index: 20;
+}
+
+.btn-back {
+  background-color: rgba(10, 25, 30, 0.8);
+  color: var(--color-white);
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-back:hover {
+  transform: scale(1.05);
+}
+
+.btn-submit {
+  background-color: rgba(10, 25, 30, 0.8);
+  color: var(--color-blue);
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+}
+
+.btn-submit.active {
+  background-color: var(--color-green);
+  color: #000;
+  cursor: pointer;
+}
+
+.btn-submit.active:hover {
+  transform: scale(1.05);
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.btn-submit {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.btn-submit.loading {
+  background-color: transparent;
+  color: var(--color-green);
+  cursor: wait;
+  pointer-events: none;
+}
+
+.btn-submit.loading::before {
+  content: '';
+  position: absolute;
+  top: -100%; left: -50%; width: 200%; height: 300%;
+  background: conic-gradient(from 0deg, transparent 0%, var(--color-green) 50%, transparent 100%);
+  z-index: -2;
+  animation: spin 1s linear infinite;
+}
+
+.btn-submit.loading::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px; right: 2px; bottom: 2px;
+  background: #001919;
+  border-radius: 30px;
+  z-index: -1;
+}
+
+/* Toast Styles */
+.toast-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  font-weight: bold;
+  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Success Screen Styles */
+.catalizado-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: -3rem;
+  margin-bottom: 3rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.success-title {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.success-title span {
+  color: var(--color-green);
+}
+
+.success-subtitle {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: bold;
+}
+
+.success-date-card {
+  background: rgba(10, 25, 30, 0.8);
+  border: 1px solid var(--color-green);
+  border-radius: 40px;
+  padding: 1.5rem 4rem;
+  color: var(--color-green);
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(222, 238, 90, 0.1);
+  margin-bottom: 5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.social-icons {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+.footer-text {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  position: relative;
+  z-index: 10;
+}
+
+/* Step 3 Assets */
+.asset-green {
+  position: fixed;
+  bottom: -20vh;
+  left: -20vw;
+  height: 120vh;
+  width: auto;
+  z-index: 1;
+  object-fit: contain;
+  object-position: left bottom;
+  pointer-events: none;
+}
+
+.asset-red {
+  position: fixed;
+  top: -20vh;
+  right: -20vw;
+  height: 120vh;
+  width: auto;
+  z-index: 1;
+  object-fit: contain;
+  object-position: right top;
+  pointer-events: none;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .logo-container {
+    margin-bottom: 2rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .cards-container {
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  .date-card {
+    flex: 1;
+    padding: 1rem 0.5rem;
+    border-radius: 15px;
+    width: auto;
+  }
+
+  .card-month {
+    font-size: 0.6rem;
+  }
+
+  .card-day {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-time {
+    font-size: 0.55rem;
+  }
+
+  .btn-continue {
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 350px;
+    bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .asset-lower {
+    bottom: -10px;
+    height: 30vh;
+    object-fit: cover;
+  }
+
+  .asset-hand {
+    width: 50%;
+    left: 5%;
+    bottom: -10px;
+  }
+
+  /* Mobile Form Styles */
+  .form-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-container {
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+  .form-input {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  .actions-container {
+    padding: 0 1rem;
+    gap: 1rem;
+    justify-content: center;
+    bottom: 2.5rem;
+  }
+
+  .btn-back, .btn-submit {
+    flex: 1;
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  /* Mobile Success Screen Styles */
+  .success-title {
+    font-size: 1.4rem;
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .success-subtitle {
+    font-size: 0.9rem;
+    padding: 0 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .success-date-card {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    width: 80%;
+    text-align: center;
+  }
+
+  .social-icons {
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-text {
+    font-size: 0.55rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .asset-green {
+    height: 70vh;
+    left: -40vw;
+    bottom: -15vh;
+  }
+
+  .asset-red {
+    height: 70vh;
+    right: -40vw;
+    top: -15vh;
+  }
 }
