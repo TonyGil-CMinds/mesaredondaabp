@@ -8,8 +8,17 @@ export async function POST(request) {
     const existing = await prisma.registration.findUnique({
       where: { correo: data.correo }
     });
-    
+
     const isUpdate = !!existing;
+
+    if (!isUpdate) {
+      const dateCount = await prisma.registration.count({
+        where: { fecha: data.activeDate },
+      });
+      if (dateCount >= 20) {
+        return NextResponse.json({ success: false, error: 'capacity_full' }, { status: 409 });
+      }
+    }
 
     const registration = await prisma.registration.upsert({
       where: { correo: data.correo },
