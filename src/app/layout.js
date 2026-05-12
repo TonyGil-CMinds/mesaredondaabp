@@ -17,11 +17,22 @@ const beiruti = localFont({
 });
 
 export const metadata = {
+  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
   title: "Registro Mesas Redondas | Áreas de Bioprosperidad",
-  description: "Descubre nuestro trabajo sobre Áreas de Bioprosperidad ",
+  description: "Descubre nuestro trabajo sobre Áreas de Bioprosperidad.",
   openGraph: {
-    images: '/public/images/seo/seo-image.png',
-  }
+    title: "Registro Mesas Redondas | Áreas de Bioprosperidad",
+    description: "Descubre nuestro trabajo sobre Áreas de Bioprosperidad.",
+    url: "/",
+    siteName: "Áreas de Bioprosperidad",
+    locale: "es_CO",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Registro Mesas Redondas | Áreas de Bioprosperidad",
+    description: "Descubre nuestro trabajo sobre Áreas de Bioprosperidad.",
+  },
 };
 
 export default function RootLayout({ children }) {
