@@ -17,7 +17,7 @@ export default function Home() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState("");
-  
+
   const [localTimes, setLocalTimes] = useState({ 19: "10 AM COL", 20: "10 AM COL", 21: "10 AM COL" });
 
   useEffect(() => {
@@ -25,11 +25,11 @@ export default function Home() {
       const d = new Date(isoString);
       const hourFormatter = new Intl.DateTimeFormat('en-US', { hour: 'numeric', hour12: true });
       const timeStr = hourFormatter.format(d);
-      
+
       const tzFormatter = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' });
       const parts = tzFormatter.formatToParts(d);
       const tzPart = parts.find(p => p.type === 'timeZoneName')?.value || '';
-      
+
       return `${timeStr} ${tzPart}`.toUpperCase();
     };
 
@@ -39,7 +39,7 @@ export default function Home() {
       21: formatEventTime('2026-05-21T10:00:00-05:00'),
     });
   }, []);
-  
+
   const step1Ref = useRef(null);
   const step2Ref = useRef(null);
   const step3Ref = useRef(null);
@@ -48,12 +48,12 @@ export default function Home() {
   const cardsRef = useRef([]);
   const logoRef = useRef(null);
   const btnRef = useRef(null);
-  
+
   const formTitleRef = useRef(null);
   const formSubtitleRef = useRef(null);
   const formFieldsRef = useRef(null);
   const formActionsRef = useRef(null);
-  
+
   const successTitleRef = useRef(null);
   const successSubtitleRef = useRef(null);
   const successDateRef = useRef(null);
@@ -88,21 +88,21 @@ export default function Home() {
         .fromTo(subtitleRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, "-=0.6")
         .fromTo(cardsRef.current, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "back.out(1.7)" }, "-=0.4")
         .fromTo(btnRef.current, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(2)" }, "-=0.2");
-        
+
       // Ensure lower asset and hand are visible
       gsap.to('.asset-lower', { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" });
       gsap.to('.asset-hand', { opacity: 1, duration: 0.8 });
       // Ensure side assets are hidden
       gsap.to('.asset-green', { x: -500, opacity: 0, duration: 0 });
       gsap.to('.asset-red', { x: 500, opacity: 0, duration: 0 });
-      
+
     } else if (step === 2) {
       const tl = gsap.timeline();
       tl.fromTo(formTitleRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" })
         .fromTo(formSubtitleRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, "-=0.6")
         .fromTo(formFieldsRef.current.children, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }, "-=0.4")
         .fromTo(formActionsRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, "-=0.2");
-        
+
     } else if (step === 3) {
       const tl = gsap.timeline();
       tl.fromTo('.asset-green', { x: -500, opacity: 0 }, { x: 0, opacity: 1, duration: 1.2, ease: "power3.out" })
@@ -141,18 +141,20 @@ export default function Home() {
         body: JSON.stringify({ ...formData, activeDate }),
       });
       const data = await response.json();
-      
+
       if (data.success) {
         if (data.isUpdate) {
           setToast("Tu correo ya ha sido registrado, se actualizarán tus datos.");
           setTimeout(() => setToast(""), 4000);
         }
-        
+
         setTimeout(() => {
-          gsap.to(step2Ref.current, { opacity: 0, y: -20, duration: 0.4, onComplete: () => {
-            setStep(3);
-            setIsSubmitting(false);
-          }});
+          gsap.to(step2Ref.current, {
+            opacity: 0, y: -20, duration: 0.4, onComplete: () => {
+              setStep(3);
+              setIsSubmitting(false);
+            }
+          });
           gsap.to('.asset-hand', { opacity: 0, duration: 0.4 });
         }, 1000);
       } else {
@@ -168,12 +170,14 @@ export default function Home() {
 
   const resetToStart = () => {
     const currentStepRef = step === 1 ? step1Ref : step === 2 ? step2Ref : step3Ref;
-    if(step !== 1) {
-      gsap.to(currentStepRef.current, { opacity: 0, duration: 0.3, onComplete: () => {
-        setStep(1);
-        setFormData({ nombre: "", apellido: "", correo: "", organizacion: "", rol: "" });
-        setActiveDate(19);
-      }});
+    if (step !== 1) {
+      gsap.to(currentStepRef.current, {
+        opacity: 0, duration: 0.3, onComplete: () => {
+          setStep(1);
+          setFormData({ nombre: "", apellido: "", correo: "", organizacion: "", rol: "" });
+          setActiveDate(19);
+        }
+      });
     }
   };
 
@@ -185,8 +189,8 @@ export default function Home() {
   };
 
   const getActiveDateString = () => {
-    if(activeDate === 19) return "MARTES 19 DE MAYO";
-    if(activeDate === 20) return "MIÉRCOLES 20 DE MAYO";
+    if (activeDate === 19) return "MARTES 19 DE MAYO";
+    if (activeDate === 20) return "MIÉRCOLES 20 DE MAYO";
     return "JUEVES 21 DE MAYO";
   };
 
@@ -213,7 +217,7 @@ export default function Home() {
                 { day: 20, name: "MIE, MAYO" },
                 { day: 21, name: "JUE, MAYO" }
               ].map((item, index) => (
-                <div 
+                <div
                   key={item.day}
                   ref={el => cardsRef.current[index] = el}
                   className={`date-card ${activeDate === item.day ? 'active' : ''}`}
@@ -225,7 +229,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            
+
             <button className="btn-continue font-button" ref={btnRef} onClick={handleNextStep}>CONTINUAR</button>
           </div>
         )}
@@ -267,12 +271,12 @@ export default function Home() {
         {step === 3 && (
           <div ref={step3Ref} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
             <h1 className="success-title font-title" ref={successTitleRef}>
-              GRACIAS POR CONFIRMAR<br/>TU ASISTENCIA A NUESTRA<br/><span>MESA REDONDA</span>
+              GRACIAS POR CONFIRMAR<br />TU ASISTENCIA A NUESTRA<br /><span>MESA REDONDA</span>
             </h1>
             <p className="success-subtitle font-paragraph" ref={successSubtitleRef}>
               En breve recibirás un correo con el enlace de la reunión.
             </p>
-            
+
             <div className="success-date-card font-button" ref={successDateRef}>
               {getActiveDateString()}
             </div>
@@ -294,8 +298,8 @@ export default function Home() {
 
       <div className="assets-container">
         <img src="/images/lowerAsset.png" alt="" className="asset-lower" />
-        <img src="/images/handopen.png" alt="" className="asset-hand" />
-        
+
+
         {step === 3 && (
           <>
             <img src="/images/greenAsset.png" alt="" className="asset-green" />
