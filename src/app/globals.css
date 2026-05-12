@@ -311,7 +311,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: -3rem;
+  margin-top: 1rem;
   margin-bottom: 3rem;
   font-size: 0.7rem;
   font-weight: bold;
