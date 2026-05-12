@@ -209,7 +209,7 @@ export default function Home() {
         {step === 1 && (
           <div ref={step1Ref} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
             <h1 className="title font-title" ref={titleRef}>¿CUÁNDO DESEAS PARTICIPAR?</h1>
-            <p className="subtitle font-paragraph" ref={subtitleRef}>Elige entre una de las tres fechas del mes de mayo de tu preferencia</p>
+            <p className="subtitle font-paragraph" ref={subtitleRef}>Elige una de las tres fechas del mes de mayo de tu preferencia</p>
 
             <div className="cards-container">
               {[
