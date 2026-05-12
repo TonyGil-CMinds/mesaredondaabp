@@ -5,8 +5,8 @@ import sgMail from '@sendgrid/mail';
 // ─── Configuración de reuniones ────────────────────────────────────────────
 const ZOOM_LINKS = {
   19: "https://us02web.zoom.us/j/81662091984",
-  20: "https://us02web.zoom.us/j/81662091883",
-  21: "https://us02web.zoom.us/j/81662091774",
+  20: "https://us02web.zoom.us/j/83947854387",
+  21: "https://us02web.zoom.us/j/87052242955",
 };
 
 const DATE_LABELS = {
