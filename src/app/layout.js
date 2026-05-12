@@ -19,6 +19,9 @@ const beiruti = localFont({
 export const metadata = {
   title: "Registro Mesas Redondas | Áreas de Bioprosperidad",
   description: "Descubre nuestro trabajo sobre Áreas de Bioprosperidad ",
+  openGraph: {
+    images: '/public/images/seo/seo-image.png',
+  }
 };
 
 export default function RootLayout({ children }) {
