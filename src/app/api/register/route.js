@@ -4,7 +4,7 @@ import sgMail from '@sendgrid/mail';
 
 // ─── Configuración de reuniones ────────────────────────────────────────────
 const ZOOM_LINKS = {
-  19: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=M3Z2cWZtMXZzYjZyODgzZGFibnQ4dXV1dTQgY19lN2Y2MmIzNWM5YWFkYzM2YmM4NzI2ZTQ4MzdjYzI4ODM5ZGIzNWRlM2RhMWJlNGVhYzEyOGNjMDY5ZmM4MzM1QGc&tmsrc=c_e7f62b35c9aadc36bc8726e4837cc28839db35de3da1be4eac128cc069fc8335%40group.calendar.google.com",
+  19: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmZ2Yjl1aHBtbzltN2ZuNjBhc3QwOGZycWEgY19lN2Y2MmIzNWM5YWFkYzM2YmM4NzI2ZTQ4MzdjYzI4ODM5ZGIzNWRlM2RhMWJlNGVhYzEyOGNjMDY5ZmM4MzM1QGc&tmsrc=c_e7f62b35c9aadc36bc8726e4837cc28839db35de3da1be4eac128cc069fc8335%40group.calendar.google.com",
   20: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MTdudWxmYmcyZTdiOGk4bWZuN3FuNGt1ZHAgY19lN2Y2MmIzNWM5YWFkYzM2YmM4NzI2ZTQ4MzdjYzI4ODM5ZGIzNWRlM2RhMWJlNGVhYzEyOGNjMDY5ZmM4MzM1QGc&tmsrc=c_e7f62b35c9aadc36bc8726e4837cc28839db35de3da1be4eac128cc069fc8335%40group.calendar.google.com",
   21: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NHBkdm43dWtnbnFsMmplM3JrMG04dXZqY3UgY19lN2Y2MmIzNWM5YWFkYzM2YmM4NzI2ZTQ4MzdjYzI4ODM5ZGIzNWRlM2RhMWJlNGVhYzEyOGNjMDY5ZmM4MzM1QGc&tmsrc=c_e7f62b35c9aadc36bc8726e4837cc28839db35de3da1be4eac128cc069fc8335%40group.calendar.google.com",
 };
