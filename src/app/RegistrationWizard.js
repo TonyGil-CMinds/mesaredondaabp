@@ -46,24 +46,7 @@ export default function RegistrationWizard({ countsByDate }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState("");
 
-  const [localTimes, setLocalTimes] = useState({ 19: "10 AM COL", 20: "10 AM COL", 21: "10 AM COL" });
-
-  useEffect(() => {
-    const formatEventTime = (isoString) => {
-      const d = new Date(isoString);
-      const hourFormatter = new Intl.DateTimeFormat('en-US', { hour: 'numeric', hour12: true });
-      const timeStr = hourFormatter.format(d);
-      const tzFormatter = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' });
-      const parts = tzFormatter.formatToParts(d);
-      const tzPart = parts.find(p => p.type === 'timeZoneName')?.value || '';
-      return `${timeStr} ${tzPart}`.toUpperCase();
-    };
-    setLocalTimes({
-      19: formatEventTime('2026-05-19T10:00:00-05:00'),
-      20: formatEventTime('2026-05-20T10:00:00-05:00'),
-      21: formatEventTime('2026-05-21T10:00:00-05:00'),
-    });
-  }, []);
+  const EVENT_TIME = "10 AM (MX) / 11 AM (COL)";
 
   const step1Ref = useRef(null);
   const step2Ref = useRef(null);
@@ -287,7 +270,7 @@ export default function RegistrationWizard({ countsByDate }) {
                       >
                         <div className="card-month font-paragraph">{item.name}</div>
                         <div className="card-day font-title">{item.day}</div>
-                        <div className="card-time font-paragraph">{isFull ? 'LLENO' : (localTimes[item.day] || "10 AM COL")}</div>
+                        <div className="card-time font-paragraph">{isFull ? 'LLENO' : EVENT_TIME}</div>
                       </div>
                     );
                   })}

@@ -10,9 +10,9 @@ const ZOOM_LINKS = {
 };
 
 const DATE_LABELS = {
-  19: "Martes 19 de Mayo, 11 AM COL",
-  20: "Miércoles 20 de Mayo, 11 AM COL",
-  21: "Jueves 21 de Mayo, 11 AM COL",
+  19: "Martes 19 de Mayo, 10 AM (MX) / 11 AM (COL)",
+  20: "Miércoles 20 de Mayo, 10 AM (MX) / 11 AM (COL)",
+  21: "Jueves 21 de Mayo, 10 AM (MX) / 11 AM (COL)",
 };
 // ───────────────────────────────────────────────────────────────────────────
 
